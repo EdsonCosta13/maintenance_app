@@ -7,11 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Admin\AdminVeiculo;
 
-use Carbon\Carbon;
-
-#MODELS
-use App\Models\Grl\GrlManutencao;
-
 
 class VeiculoController extends Controller
 {
@@ -22,17 +17,7 @@ class VeiculoController extends Controller
      */
     public function index()
     {
-
-        $days=7;
-        $from=Carbon::now();
-        $to=$from->addDays($days);
-        $query=DB::table('grl_manutencaos')->whereBetween('data',[$from,$to])->get();
-        dd($query);
-
-        //return response()->json(GrlManutencao::where('data',[$from,$to])->get());
-        return response()->json(
-                DB::table('grl_manutencaos')->whereBetween('data',[$from,$to])->get());
-        //return view('Admin.veiculos.index');
+        return view('Admin.veiculos.index');
     }
 
     /**
